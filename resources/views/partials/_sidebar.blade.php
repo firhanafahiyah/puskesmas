@@ -22,8 +22,8 @@
     </li>
 
     <li class="nav-item">
-      <a class="nav-link" href="/pasien">
-        <span class="menu-title">Pasien</span>
+      <a class="nav-link" href="/dokter">
+        <span class="menu-title">dokter</span>
         <i class="mdi mdi-home menu-icon"></i>
       </a>
     </li>
