@@ -2,7 +2,7 @@
 @section('content')
         <h1>Daftar Dokter</h1>
         <br>
-        <a href="/pasien/create" class="btn btn-primary">+ Tambah Dokter</a>
+        <a href="/dokter/create" class="btn btn-primary">+ Tambah Dokter</a>
         <hr>
 
         @if (session('success'))
@@ -14,6 +14,7 @@
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
+                    <th>No</th>
                     <th>Nama</th>
                     <th>Spesialis</th>
                     <th>Alamat</th>
@@ -23,7 +24,7 @@
             </thead>
             <tbody>
                 @php $iteration = 1 @endphp
-                @foreach ($pasiens as $item)
+                @foreach ($dokters as $item)
                     <tr>
                         <td>{{ $iteration++}}</td>
                         <td>{{ $item['nama'] }}</td>
