@@ -17,42 +17,55 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [DashboardController::class, 'index'])->middleware('auth');
+// route untuk role admin
+Route::group(['middleware' => ['auth' , 'role:admin']], function () {
+    //Route untuk menampilkan form tambah pasien
+ Route::get('/pasien/create', [PasienController::class, 'create']);
 
-// Route untuk menampilkan daftar pasien
-Route::get('/pasien', [pasienController::class, 'index'])->middleware('auth');
+
 
 // Route untuk menampilkan form tambah pasien
-Route::get('/pasien/create', [pasienController::class, 'create'])->middleware('auth');
+Route::get('/pasien/create', [pasienController::class, 'create']);
 
 // Route untuk memproses form tambah pasien
-Route::post('/pasien', [pasienController::class, 'store'])->middleware('auth');
+Route::post('/pasien', [pasienController::class, 'store']);
 
 // Router untuk menampilkan form edit pasien
-Route::get('/pasien/edit/{id}' , [pasienController::class, 'edit'])->middleware('auth');
+Route::get('/pasien/edit/{id}' , [pasienController::class, 'edit']);
 
 
 
-Route::get('/', [DashboardController::class, 'index'])->middleware('auth');
+Route::get('/', [DashboardController::class, 'index']);
 
-// Route untuk menampilkan daftar dokter
-Route::get('/dokter', [dokterController::class, 'index'])->middleware('auth');
+
 
 // Route untuk menampilkan form tambah dokter
-Route::get('/dokter/create', [dokterController::class, 'create'])->middleware('auth');
+Route::get('/dokter/create', [dokterController::class, 'create']);
 
 // Route untuk memproses form tambah dokter
-Route::post('/dokter', [dokterController::class, 'store'])->middleware('auth');
+Route::post('/dokter', [dokterController::class, 'store']);
 
 // Route untuk memproses form edit pasien
-Route::put('/pasien/{id}', [pasienController::class, 'update'])->middleware('auth');
+Route::put('/pasien/{id}', [pasienController::class, 'update']);
 
 // Route untuk menghapus pasien
-Route::delete('/pasien', [pasienController::class, 'destroy'])->middleware('auth');
+Route::delete('/pasien', [pasienController::class, 'destroy']);
+
+});
+
+//route untuk user terautentikasi
+Route::group(['middleware' => ['auth' ]], function () {
+
+Route::get('/', [DashboardController::class, 'index']);
+
+// Route untuk menampilkan daftar pasien
+Route::get('/pasien', [pasienController::class, 'index']);
 
 
+// Route untuk menampilkan daftar dokter
+Route::get('/dokter', [dokterController::class, 'index']);
 
-
+});
 
 Auth::routes();
 
